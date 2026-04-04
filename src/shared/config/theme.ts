@@ -1,0 +1,17 @@
+export const colors = {
+  navy: "#0F172A",
+  navyLight: "#1E293B",
+  navyMedium: "#172554",
+  emerald: "#10B981",
+  emeraldDark: "#059669",
+  emeraldLight: "#34D399",
+  emeraldPale: "#ECFDF5",
+  emeraldGlow: "rgba(16, 185, 129, 0.15)",
+  white: "#FFFFFF",
+  gray50: "#F8FAFC",
+  gray100: "#F1F5F9",
+  gray200: "#E2E8F0",
+  gray400: "#94A3B8",
+  gray500: "#64748B",
+  gray600: "#475569",
+} as const;
