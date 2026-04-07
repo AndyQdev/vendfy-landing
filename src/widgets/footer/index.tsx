@@ -1,12 +1,13 @@
+import Link from "next/link";
 import { VendfyLogo } from "@/shared/ui/vendfy-logo";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const links = {
   producto: [
-    { label: "Funcionalidades", href: "#features" },
-    { label: "Precios", href: "#precios" },
-    { label: "Inteligencia Artificial", href: "#ia" },
-    { label: "App Movil", href: "#features" },
+    { label: "Funcionalidades", href: "/#features" },
+    { label: "Precios", href: "/#precios" },
+    { label: "Inteligencia Artificial", href: "/#ia" },
+    { label: "App Movil", href: "/#features" },
   ],
   empresa: [
     { label: "Sobre Nosotros", href: "#" },
@@ -14,8 +15,8 @@ const links = {
     { label: "Contacto", href: "https://wa.me/59171890091" },
   ],
   legal: [
-    { label: "Terminos de Servicio", href: "#" },
-    { label: "Politica de Privacidad", href: "#" },
+    { label: "Terminos y Condiciones", href: "/terminos" },
+    { label: "Politica de Privacidad", href: "/privacidad" },
   ],
 };
 
@@ -78,9 +79,9 @@ export function Footer() {
             <ul className="space-y-3">
               {links.legal.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
