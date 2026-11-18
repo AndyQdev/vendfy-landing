@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Landing de Vendfy
 
-## Getting Started
+El sitio público (vendfy.shop): qué es Vendfy, «Oye Vendfy», precios, preguntas
+frecuentes y la página de **descarga** (`/descargar`) con el paso a paso de
+Windows, Android, iPhone/iPad y web, como la de Claude.
 
-First, run the development server:
+Next.js 16 (App Router, todo estático) + Tailwind 4. Colores y letras del panel:
+Sora para títulos, Plus Jakarta Sans para el texto, turquesa `#0E7490` y azul
+marino `#0F172A` (`src/app/globals.css`).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev            # http://localhost:3000
+npm run build && npx next start -p 3418
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Dónde está cada cosa
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `src/shared/config/sitio.ts`: la dirección del panel (`NEXT_PUBLIC_APP_URL`,
+  hoy vendfy-panel.vercel.app), el WhatsApp de ventas.
+- `src/shared/config/descargas.ts`: versión, peso y requisitos de cada instalador.
+- `src/shared/lib/plataforma.ts`: detecta el equipo del visitante para
+  recomendarle su descarga (el botón del inicio y «Para tu equipo»).
+- `src/shared/assets/capturas/`: capturas reales del panel (tienda de prueba, sin
+  datos de clientes).
+- `next.config.ts`: `/login` y `/registro` llevan al panel; los `.apk` y `.exe` se
+  sirven como descarga.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Publicar
 
-## Learn More
+Los instaladores no van en git. `scripts/publicar.sh` arma una copia limpia del
+último commit, le agrega los instaladores de `C:\Trabajos\Ecommerce\instaladores`
+y la publica en Vercel (cuenta andyqdev, proyecto `vendfy-landing`):
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+VERCEL_TOKEN=... VERCEL_PROJECT_ID=... bash scripts/publicar.sh
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Al cambiar un instalador: copiarlo a `instaladores/`, actualizar
+`descargas.ts` y volver a publicar.

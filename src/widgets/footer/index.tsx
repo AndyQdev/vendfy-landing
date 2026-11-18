@@ -1,101 +1,91 @@
 import Link from "next/link";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { URL_LOGIN, URL_REGISTRO } from "@/shared/config/sitio";
 import { VendfyLogo } from "@/shared/ui/vendfy-logo";
-import { Mail, Phone, MapPin } from "lucide-react";
 
-const links = {
-  producto: [
-    { label: "Funcionalidades", href: "/#features" },
-    { label: "Precios", href: "/#precios" },
-    { label: "Inteligencia Artificial", href: "/#ia" },
-    { label: "App Movil", href: "/#features" },
-  ],
-  empresa: [
-    { label: "Sobre Nosotros", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Contacto", href: "https://wa.me/59171890091" },
-  ],
-  legal: [
-    { label: "Terminos y Condiciones", href: "/terminos" },
-    { label: "Politica de Privacidad", href: "/privacidad" },
-  ],
-};
+const columnas = [
+  {
+    titulo: "Producto",
+    enlaces: [
+      { label: "Funciones", href: "/#funciones" },
+      { label: "Vendfy por voz", href: "/#voz" },
+      { label: "Precios", href: "/#precios" },
+      { label: "Preguntas", href: "/#preguntas" },
+    ],
+  },
+  {
+    titulo: "Descargar",
+    enlaces: [
+      { label: "Windows", href: "/descargar#windows" },
+      { label: "Android", href: "/descargar#android" },
+      { label: "iPhone y iPad", href: "/descargar#iphone" },
+      { label: "Web", href: "/descargar#web" },
+    ],
+  },
+  {
+    titulo: "Cuenta",
+    enlaces: [
+      { label: "Iniciar sesión", href: URL_LOGIN },
+      { label: "Crear cuenta", href: URL_REGISTRO },
+      { label: "Términos y condiciones", href: "/terminos" },
+      { label: "Política de privacidad", href: "/privacidad" },
+    ],
+  },
+];
 
 export function Footer() {
   return (
-    <footer className="bg-[#0F172A] border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <VendfyLogo variant="full-white" size={36} />
-            <p className="mt-4 text-gray-400 text-sm leading-relaxed max-w-sm">
-              La plataforma todo-en-uno para digitalizar tu negocio. Inventario, ventas, tienda online y mas.
+    <footer className="border-t border-slate-200 bg-white">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
+          <div className="col-span-2">
+            <VendfyLogo size={32} />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-600">
+              Caja, inventario, tienda online y WhatsApp con IA para vender más en tu negocio.
             </p>
-            <div className="mt-6 space-y-3">
-              <a href="mailto:andres.03.12.2003@gmail.com" className="flex items-center gap-3 text-sm text-gray-400 hover:text-white transition-colors">
-                <Mail className="w-4 h-4" />
-                andres.03.12.2003@gmail.com
-              </a>
-              <a href="https://wa.me/59171890091" className="flex items-center gap-3 text-sm text-gray-400 hover:text-white transition-colors">
-                <Phone className="w-4 h-4" />
-                +591 71890091
-              </a>
-              <span className="flex items-center gap-3 text-sm text-gray-400">
-                <MapPin className="w-4 h-4" />
+            <ul className="mt-6 space-y-2.5 text-sm text-slate-600">
+              <li>
+                <a href="mailto:andres.03.12.2003@gmail.com" className="inline-flex items-center gap-2.5 hover:text-tinta">
+                  <Mail className="h-4 w-4" aria-hidden="true" />
+                  andres.03.12.2003@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/59171890091" className="inline-flex items-center gap-2.5 hover:text-tinta">
+                  <Phone className="h-4 w-4" aria-hidden="true" />
+                  +591 71890091
+                </a>
+              </li>
+              <li className="inline-flex items-center gap-2.5">
+                <MapPin className="h-4 w-4" aria-hidden="true" />
                 Santa Cruz, Bolivia
-              </span>
+              </li>
+            </ul>
+          </div>
+          {columnas.map((c) => (
+            <div key={c.titulo}>
+              <h4 className="text-sm font-semibold text-tinta">{c.titulo}</h4>
+              <ul className="mt-4 space-y-2.5">
+                {c.enlaces.map((e) => (
+                  <li key={e.label}>
+                    {e.href.startsWith("http") ? (
+                      <a href={e.href} className="text-sm text-slate-600 hover:text-tinta">
+                        {e.label}
+                      </a>
+                    ) : (
+                      <Link href={e.href} className="text-sm text-slate-600 hover:text-tinta">
+                        {e.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-
-          {/* Links */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Producto</h4>
-            <ul className="space-y-3">
-              {links.producto.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Empresa</h4>
-            <ul className="space-y-3">
-              {links.empresa.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Legal</h4>
-            <ul className="space-y-3">
-              {links.legal.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          ))}
         </div>
-
-        {/* Bottom */}
-        <div className="mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Vendfy. Todos los derechos reservados.
-          </p>
-          <p className="text-sm text-gray-600">
-            Hecho con amor en Bolivia
-          </p>
+        <div className="mt-14 flex flex-col gap-2 border-t border-slate-200 pt-8 text-sm text-slate-500 sm:flex-row sm:justify-between">
+          <p>© {new Date().getFullYear()} Vendfy. Hecho en Bolivia.</p>
+          <p>Vende, cobra y controla tu tienda en un solo lugar.</p>
         </div>
       </div>
     </footer>

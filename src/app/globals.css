@@ -1,47 +1,51 @@
 @import "tailwindcss";
 
+/*
+ * Los colores del panel de Vendfy: tinta azul marino, turquesa de marca y el
+ * cian del logo. Todo lo demás son grises de la escala slate de Tailwind.
+ */
 @theme inline {
-  --color-navy: #0F172A;
-  --color-navy-light: #1E293B;
-  --color-navy-medium: #172554;
-  --color-emerald: #10B981;
-  --color-emerald-dark: #059669;
-  --color-emerald-light: #34D399;
-  --color-emerald-pale: #ECFDF5;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --font-display: var(--font-sora), var(--font-jakarta), system-ui, sans-serif;
+
+  --color-tinta: #0f172a;
+  --color-tinta-2: #1e293b;
+  --color-marca: #0e7490;
+  --color-marca-oscura: #155e75;
+  --color-marca-media: #0891b2;
+  --color-cian: #06b6d4;
+  --color-cian-claro: #22d3ee;
+  --color-marca-palida: #ecfeff;
+  --color-superficie: #f3f5f7;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
   background: #ffffff;
-  color: #0F172A;
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  color: var(--color-tinta);
+  font-family: var(--font-sans);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Glow effect for hero */
-.glow-emerald {
-  box-shadow: 0 0 60px rgba(16, 185, 129, 0.3), 0 0 120px rgba(16, 185, 129, 0.1);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
-.glow-text {
-  text-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+/* Fondo de puntos suave para el hero. */
+.fondo-puntos {
+  background-image: radial-gradient(rgb(15 23 42 / 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #10B981, #34D399, #059669);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Grid pattern background */
-.grid-pattern {
-  background-image:
-    linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
+/* Textos legales (privacidad, términos). */
+.legal-prose {
+  color: #334155;
+  line-height: 1.75;
 }

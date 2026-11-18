@@ -1,131 +1,98 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { URL_LOGIN, URL_REGISTRO } from "@/shared/config/sitio";
 import { VendfyLogo } from "@/shared/ui/vendfy-logo";
 
-const navLinks = [
-  { href: "#features", label: "Funcionalidades" },
-  { href: "#como-funciona", label: "Como funciona" },
-  { href: "#ia", label: "IA" },
-  { href: "#precios", label: "Precios" },
-  { href: "#testimonios", label: "Testimonios" },
+const enlaces = [
+  { href: "/#funciones", label: "Funciones" },
+  { href: "/#voz", label: "Vendfy por voz" },
+  { href: "/descargar", label: "Descargar" },
+  { href: "/#precios", label: "Precios" },
+  { href: "/#preguntas", label: "Preguntas" },
 ];
 
-const WA_LINK = "https://wa.me/59171890091?text=Hola%2C%20me%20interesa%20Vendfy";
-
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [conScroll, setConScroll] = useState(false);
+  const [abierto, setAbierto] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const alMover = () => setConScroll(window.scrollY > 8);
+    alMover();
+    window.addEventListener("scroll", alMover, { passive: true });
+    return () => window.removeEventListener("scroll", alMover);
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-100"
-          : "bg-transparent"
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-200 ${
+        conScroll || abierto ? "bg-white/90 backdrop-blur-xl border-b border-slate-200" : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          <a href="#" className="flex-shrink-0">
-            <VendfyLogo size={32} />
-          </a>
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Principal">
+        <Link href="/" className="shrink-0" aria-label="Vendfy, inicio">
+          <VendfyLogo size={30} />
+        </Link>
 
-          {/* Desktop */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-
-          <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="https://app.vendfy.shop/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold text-[#0F172A] hover:text-[#10B981] transition-colors px-4 py-2"
-            >
-              Iniciar Sesion
-            </a>
-            <a
-              href={WA_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold text-white bg-[#0F172A] hover:bg-[#1E293B] px-5 py-2.5 rounded-xl transition-all hover:shadow-lg"
-            >
-              Contactar Ventas
-            </a>
-          </div>
-
-          {/* Mobile toggle */}
-          <button
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        <div className="hidden lg:flex items-center gap-1">
+          {enlaces.map((e) => (
+            <Link key={e.href} href={e.href} className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-tinta hover:bg-slate-100">
+              {e.label}
+            </Link>
+          ))}
         </div>
-      </div>
 
-      {/* Mobile menu */}
+        <div className="hidden lg:flex items-center gap-2">
+          <a href={URL_LOGIN} className="rounded-lg px-4 py-2 text-sm font-semibold text-tinta transition-colors hover:bg-slate-100" data-testid="nav-login">
+            Iniciar sesión
+          </a>
+          <a href={URL_REGISTRO} className="rounded-lg bg-tinta px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-tinta-2">
+            Crear cuenta
+          </a>
+        </div>
+
+        <button
+          type="button"
+          className="lg:hidden rounded-lg p-2 text-tinta hover:bg-slate-100"
+          onClick={() => setAbierto((v) => !v)}
+          aria-expanded={abierto}
+          aria-controls="menu-movil"
+          aria-label={abierto ? "Cerrar menú" : "Abrir menú"}
+        >
+          {abierto ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </nav>
+
       <AnimatePresence>
-        {mobileOpen && (
+        {abierto && (
           <motion.div
+            id="menu-movil"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-gray-100"
+            className="lg:hidden overflow-hidden border-t border-slate-200 bg-white"
           >
-            <div className="px-4 py-4 space-y-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-50"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </a>
+            <div className="space-y-1 px-4 py-4">
+              {enlaces.map((e) => (
+                <Link key={e.href} href={e.href} onClick={() => setAbierto(false)} className="block rounded-lg px-3 py-3 text-base font-medium text-slate-700 hover:bg-slate-50">
+                  {e.label}
+                </Link>
               ))}
-              <div className="pt-2 flex flex-col gap-2">
-                <a
-                  href="https://app.vendfy.shop/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-center text-sm font-semibold text-[#0F172A] border border-gray-200 px-5 py-3 rounded-xl"
-                >
-                  Iniciar Sesion
+              <div className="grid grid-cols-2 gap-2 pt-3">
+                <a href={URL_LOGIN} className="rounded-xl border border-slate-300 px-4 py-3 text-center text-sm font-semibold text-tinta">
+                  Iniciar sesión
                 </a>
-                <a
-                  href={WA_LINK}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-center text-sm font-semibold text-white bg-[#0F172A] px-5 py-3 rounded-xl"
-                >
-                  Contactar Ventas
+                <a href={URL_REGISTRO} className="rounded-xl bg-tinta px-4 py-3 text-center text-sm font-semibold text-white">
+                  Crear cuenta
                 </a>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </header>
   );
 }

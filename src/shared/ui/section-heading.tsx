@@ -3,22 +3,31 @@ interface Props {
   title: string;
   highlight?: string;
   description?: string;
+  /** Sobre fondo oscuro. */
+  oscuro?: boolean;
+  alineacion?: "centro" | "izquierda";
 }
 
-export function SectionHeading({ badge, title, highlight, description }: Props) {
+export function SectionHeading({ badge, title, highlight, description, oscuro, alineacion = "centro" }: Props) {
+  const centro = alineacion === "centro";
   return (
-    <div className="text-center max-w-3xl mx-auto mb-16">
+    <div className={`max-w-3xl mb-14 ${centro ? "mx-auto text-center" : ""}`}>
       {badge && (
-        <span className="inline-block text-sm font-semibold text-[#059669] bg-[#ECFDF5] px-4 py-1.5 rounded-full mb-4">
+        <p className={`text-sm font-semibold uppercase tracking-[0.14em] mb-4 ${oscuro ? "text-cian-claro" : "text-marca"}`}>
           {badge}
-        </span>
+        </p>
       )}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-        {title}{" "}
-        {highlight && <span className="gradient-text">{highlight}</span>}
+      <h2
+        className={`font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.1] text-balance ${
+          oscuro ? "text-white" : "text-tinta"
+        }`}
+      >
+        {title} {highlight && <span className={oscuro ? "text-cian-claro" : "text-marca"}>{highlight}</span>}
       </h2>
       {description && (
-        <p className="mt-4 text-lg text-gray-500 leading-relaxed">{description}</p>
+        <p className={`mt-5 text-lg leading-relaxed text-pretty ${oscuro ? "text-slate-300" : "text-slate-600"}`}>
+          {description}
+        </p>
       )}
     </div>
   );

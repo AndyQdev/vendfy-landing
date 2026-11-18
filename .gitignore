@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Instaladores: pesan; se copian al publicar (scripts/publicar.sh)
+/public/descargas/*.exe
+/public/descargas/*.apk

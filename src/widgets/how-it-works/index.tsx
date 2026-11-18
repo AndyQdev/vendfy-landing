@@ -1,68 +1,27 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { UserPlus, Settings, Rocket } from "lucide-react";
 import { SectionHeading } from "@/shared/ui/section-heading";
 
-const steps = [
-  {
-    num: "01",
-    icon: UserPlus,
-    title: "Crea tu cuenta",
-    description: "Registrate en minutos. Configura tu tienda con nombre, categoria y listo. La IA te ayuda a completar todo.",
-  },
-  {
-    num: "02",
-    icon: Settings,
-    title: "Agrega tus productos",
-    description: "Sube una foto, un Excel o un PDF y la IA crea todos tus productos automaticamente. O agregalos manualmente.",
-  },
-  {
-    num: "03",
-    icon: Rocket,
-    title: "Empieza a vender",
-    description: "Tu tienda online esta lista, tu caja de cobro configurada y el bot de WhatsApp activo. A vender!",
-  },
+const pasos = [
+  { n: "1", titulo: "Crea tu cuenta", texto: "Con tu correo, en un par de minutos. Le pones nombre a tu tienda y listo." },
+  { n: "2", titulo: "Carga tus productos", texto: "Desde un Excel, un PDF o una foto, y la IA los ordena por ti. O agrégalos a mano." },
+  { n: "3", titulo: "Empieza a vender", texto: "Cobra en la caja, recibe pedidos de tu tienda online y deja que WhatsApp responda." },
 ];
 
 export function HowItWorks() {
   return (
-    <section id="como-funciona" className="py-24 lg:py-32 bg-[#F8FAFC]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          badge="3 simples pasos"
-          title="Tan facil como"
-          highlight="1, 2, 3"
-          description="No necesitas ser experto en tecnologia. En minutos tendras todo tu negocio digitalizado."
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.num}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="relative text-center"
-            >
-              {/* Connector line */}
-              {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-14 left-[60%] w-[80%] h-[2px] bg-gradient-to-r from-[#10B981]/30 to-transparent" />
-              )}
-
-              <div className="relative inline-flex items-center justify-center w-28 h-28 rounded-3xl bg-white border border-gray-100 shadow-lg shadow-gray-100/50 mb-6">
-                <step.icon className="w-10 h-10 text-[#10B981]" />
-                <span className="absolute -top-3 -right-3 w-8 h-8 bg-[#0F172A] text-white text-xs font-bold rounded-full flex items-center justify-center">
-                  {step.num}
-                </span>
-              </div>
-
-              <h3 className="text-xl font-bold mb-3 text-[#0F172A]">{step.title}</h3>
-              <p className="text-gray-500 leading-relaxed max-w-xs mx-auto">{step.description}</p>
-            </motion.div>
+    <section id="como-empezar" className="py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading badge="Cómo empezar" title="De cero a vender," highlight="hoy mismo" />
+        <ol className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {pasos.map((p) => (
+            <li key={p.n} className="relative rounded-2xl border border-slate-200 bg-white p-7">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-marca-palida font-display text-lg font-bold text-marca-oscura" aria-hidden="true">
+                {p.n}
+              </span>
+              <h3 className="mt-5 font-display text-lg font-semibold text-tinta">{p.titulo}</h3>
+              <p className="mt-2 leading-relaxed text-slate-600">{p.texto}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );
