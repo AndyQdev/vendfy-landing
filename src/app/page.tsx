@@ -7,6 +7,8 @@ import { Descargas } from "@/widgets/descargas";
 import { HowItWorks } from "@/widgets/how-it-works";
 import { Pricing } from "@/widgets/pricing";
 import { Preguntas } from "@/widgets/preguntas";
+import { Novedades } from "@/widgets/novedades";
+import { Contacto } from "@/widgets/contacto";
 import { CTA } from "@/widgets/cta";
 import { Footer } from "@/widgets/footer";
 
@@ -22,7 +24,9 @@ export default function Home() {
         <Descargas />
         <HowItWorks />
         <Pricing />
+        <Novedades />
         <Preguntas />
+        <Contacto />
         <CTA />
       </main>
       <Footer />

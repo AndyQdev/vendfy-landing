@@ -1,32 +1,9 @@
 import { ChevronDown } from "lucide-react";
+import { PREGUNTAS } from "@/shared/config/vendfy";
 import { SectionHeading } from "@/shared/ui/section-heading";
 
-const preguntas = [
-  {
-    p: "¿Tengo que instalar algo?",
-    r: "No. Vendfy funciona en el navegador: entras con tu correo y listo. Las apps de Windows y Android suman lo que el navegador no puede: abrirse solas con la computadora, el atajo F9 desde cualquier programa y «Oye Vendfy» con la app minimizada o la pantalla apagada.",
-  },
-  {
-    p: "¿En qué equipos funciona?",
-    r: "En la web (Chrome, Edge, Safari o Firefox, en cualquier computadora), en Windows 10 y 11, en Android 7 o superior, y en iPhone y iPad desde Safari. Es la misma cuenta en todos.",
-  },
-  {
-    p: "¿Cómo funciona «Oye Vendfy»? ¿Me escucha todo el tiempo?",
-    r: "Solo si prendes manos libres. El detector de la palabra corre en tu propio equipo y nada se envía hasta que oye «Oye Vendfy». Después manda lo que dijiste para entenderlo, y antes de cobrar o cambiar el stock te pide un «sí».",
-  },
-  {
-    p: "¿Puedo usar un lector de código de barras?",
-    r: "Sí. En la caja y en el inventario puedes buscar escribiendo o escaneando con un lector de código de barras.",
-  },
-  {
-    p: "¿Cómo cargo mis productos?",
-    r: "Uno por uno, o de golpe desde un Excel, un PDF o una foto: la IA arma la lista con nombres, precios y categorías.",
-  },
-  {
-    p: "¿Cómo empiezo?",
-    r: "Crea tu cuenta desde esta página, o escríbenos por WhatsApp y te ayudamos a configurar tu tienda y a cargar tus productos.",
-  },
-];
+// Las preguntas viven en shared/config/vendfy.ts: el asistente del chat responde con ellas.
+const preguntas = PREGUNTAS;
 
 export function Preguntas() {
   return (

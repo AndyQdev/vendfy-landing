@@ -5,7 +5,7 @@ import { Check, Mic } from "lucide-react";
 import tarjeta from "@/shared/assets/capturas/voz-tarjeta.png";
 import carrito from "@/shared/assets/capturas/voz-carrito.png";
 
-const frases = ["«Oye Vendfy, vende dos Sprite»", "«¿A cuánto está el dólar?»", "«El stock de la Coca está mal, hay 30»", "«Cobra con QR»"];
+const frases = ["«Oye Vendfy, agrega dos huevos y un café»", "«¿A cuánto está el dólar?»", "«El stock de la Coca está mal, hay 30»", "«Cobra con QR»"];
 
 const puntos = [
   "Te lleva a la pantalla que corresponde y llena los datos por ti.",
@@ -53,12 +53,12 @@ export function Voz() {
           {/* Recortes de una captura real: la Caja y la tarjeta de Vendfy encima. */}
           <div className="relative mx-auto max-w-lg pb-10 pt-14 lg:ml-auto">
             <div className="ml-auto w-[68%] overflow-hidden rounded-2xl border border-white/10 bg-white shadow-2xl shadow-black/40">
-              <Image src={carrito} alt="La Caja con 2 Sprite 2 l y el total de Bs 26,00" sizes="(min-width: 1024px) 340px, 60vw" placeholder="blur" className="block h-auto w-full" />
+              <Image src={carrito} alt="La Caja con 2 Huevos frescos x12, 1 Café Nescafé 200g y el total de Bs 65,00" sizes="(min-width: 1024px) 340px, 60vw" placeholder="blur" className="block h-auto w-full" />
             </div>
             <div className="absolute bottom-0 left-0 w-[74%] overflow-hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-white/10">
               <Image
                 src={tarjeta}
-                alt="Vendfy oyó «vende dos sprite» y contesta «Listo: 2 Sprite 2 l. Total Bs 26,00. ¿Algo más?»"
+                alt="Vendfy oyó «agrega dos huevos frescos y un café nescafé» y contesta con subtítulos «Listo: 2 Huevos frescos x12 y 1 Café Nescafé 200g. Total Bs 65,00. ¿Algo más?»"
                 sizes="(min-width: 1024px) 400px, 75vw"
                 placeholder="blur"
                 className="block h-auto w-full"
@@ -66,7 +66,7 @@ export function Voz() {
             </div>
             <div className="absolute left-0 top-0 flex items-center gap-2 rounded-full bg-cian px-4 py-2 text-sm font-semibold text-tinta shadow-lg">
               <Mic className="h-4 w-4" aria-hidden="true" />
-              «Oye Vendfy, vende dos Sprite»
+              «Oye Vendfy, agrega dos huevos y un café»
             </div>
           </div>
         </div>

@@ -76,17 +76,17 @@ export function Hero() {
             <MarcoNavegador
               src={cajaVoz}
               prioridad
-              alt="La Caja de Vendfy: el asistente oyó «vende dos sprite», agregó 2 Sprite y pregunta «¿Algo más?»"
+              alt="La Caja de Vendfy: la bola de Vendfy oyó «agrega dos huevos frescos y un café nescafé», los agregó y pregunta «¿Algo más?»"
             />
           </div>
           <div className="absolute -bottom-4 right-4 hidden w-[22%] md:block lg:-right-8">
             <MarcoTelefono>
-              <Image src={movilInicio} alt="Vendfy en el celular: el inicio con las ventas del día" sizes="260px" className="block h-auto w-full" />
+              <Image src={movilInicio} alt="Vendfy en el celular: el inventario con el valor del stock" sizes="260px" className="block h-auto w-full" />
             </MarcoTelefono>
           </div>
           <div className="mx-auto w-[78%] max-w-xs md:hidden">
             <MarcoTelefono>
-              <Image src={movilInicio} alt="Vendfy en el celular: el inicio con las ventas del día" sizes="320px" priority className="block h-auto w-full" />
+              <Image src={movilInicio} alt="Vendfy en el celular: el inventario con el valor del stock" sizes="320px" priority className="block h-auto w-full" />
             </MarcoTelefono>
           </div>
         </motion.div>

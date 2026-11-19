@@ -12,7 +12,8 @@ const enlaces = [
   { href: "/#voz", label: "Vendfy por voz" },
   { href: "/descargar", label: "Descargar" },
   { href: "/#precios", label: "Precios" },
-  { href: "/#preguntas", label: "Preguntas" },
+  { href: "/#novedades", label: "Novedades" },
+  { href: "/#contacto", label: "Contacto" },
 ];
 
 export function Navbar() {

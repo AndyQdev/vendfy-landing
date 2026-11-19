@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Sora } from "next/font/google";
 import { SITIO_URL } from "@/shared/config/sitio";
 import { Movimiento } from "@/shared/ui/movimiento";
+import { Asistente } from "@/widgets/asistente";
 import "./globals.css";
 
 // Las mismas letras del panel: Sora para títulos, Plus Jakarta Sans para el texto.
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="es" className={`${jakarta.variable} ${sora.variable} h-full`} data-scroll-behavior="smooth">
       <body className="min-h-full flex flex-col">
         <Movimiento>{children}</Movimiento>
+        <Asistente />
       </body>
     </html>
   );

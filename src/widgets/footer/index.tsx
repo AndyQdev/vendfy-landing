@@ -10,7 +10,10 @@ const columnas = [
       { label: "Funciones", href: "/#funciones" },
       { label: "Vendfy por voz", href: "/#voz" },
       { label: "Precios", href: "/#precios" },
+      { label: "Novedades", href: "/#novedades" },
       { label: "Preguntas", href: "/#preguntas" },
+      { label: "Contacto", href: "/#contacto" },
+      { label: "Guía de uso", href: "https://app.vendfy.shop/guia" },
     ],
   },
   {

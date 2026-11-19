@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Bot, Boxes, ChartColumn, Globe, ScanBarcode, Sparkles, Truck, Users } from "lucide-react";
+import { Bot, Boxes, ChartColumn, Globe, Megaphone, Radio, ScanBarcode, ShieldCheck, Sparkles, TicketPercent, Truck, Users } from "lucide-react";
 import { SectionHeading } from "@/shared/ui/section-heading";
 import { MarcoNavegador } from "@/shared/ui/marcos";
 import cajaVoz from "@/shared/assets/capturas/caja-voz.png";
-import inicio from "@/shared/assets/capturas/inicio.png";
+import asistente from "@/shared/assets/capturas/asistente.png";
+import marketing from "@/shared/assets/capturas/marketing.png";
 import inventario from "@/shared/assets/capturas/inventario.png";
 
 const funciones = [
@@ -18,12 +19,17 @@ const funciones = [
   { Icono: Sparkles, titulo: "Productos con IA", texto: "Carga tu catálogo desde una foto, un Excel o un PDF, sin escribir uno por uno." },
   { Icono: Users, titulo: "Clientes", texto: "Cada cliente con sus datos y su historial de compras." },
   { Icono: ChartColumn, titulo: "Reportes claros", texto: "Ventas, ganancia, ticket promedio y lo que más se vende, de un vistazo." },
+  { Icono: Megaphone, titulo: "Marketing con Meta", texto: "Campañas de «clic a WhatsApp» en Facebook e Instagram y cuánto vendió cada una." },
+  { Icono: Radio, titulo: "Modo Live", texto: "Vende en vivo por redes: compra directa o subastas con pujas en tiempo real." },
+  { Icono: TicketPercent, titulo: "Promociones", texto: "Descuentos con fecha de inicio y fin, con su propia página para compartir." },
+  { Icono: ShieldCheck, titulo: "Equipo y roles", texto: "Tu cajero o tu encargado entran con su usuario y ven solo lo suyo." },
 ];
 
 const recorrido = [
-  { id: "caja", nombre: "Caja", imagen: cajaVoz, texto: "Vende en segundos, con el teclado, el lector o la voz.", alt: "La Caja con una venta de 2 Sprite y el asistente Vendfy" },
-  { id: "inicio", nombre: "Inicio", imagen: inicio, texto: "Cómo va tu negocio hoy y qué necesita tu atención.", alt: "El inicio con ventas, ganancia estimada y avisos" },
-  { id: "inventario", nombre: "Inventario", imagen: inventario, texto: "Todo tu stock, con su valor y lo que está por agotarse.", alt: "El inventario con productos, precios y stock" },
+  { id: "caja", nombre: "Caja", imagen: cajaVoz, texto: "Vende en segundos, con el teclado, el lector o la voz.", alt: "La Caja con 2 Huevos frescos y 1 Café Nescafé que agregó Vendfy por voz" },
+  { id: "asistente", nombre: "Asistente", imagen: asistente, texto: "Pregúntale a tu negocio: responde con tus datos y te propone qué hacer.", alt: "El Asistente con el análisis de los productos con poco stock" },
+  { id: "inventario", nombre: "Inventario", imagen: inventario, texto: "Todo tu stock, con su valor y lo que está por agotarse.", alt: "El inventario con productos, fotos, precios y stock" },
+  { id: "marketing", nombre: "Marketing", imagen: marketing, texto: "Tus campañas en Meta, sus chats de WhatsApp y lo que vendieron.", alt: "El módulo de Marketing con los pasos para conectar WhatsApp, el agente IA y Meta" },
 ] as const;
 
 export function Features() {

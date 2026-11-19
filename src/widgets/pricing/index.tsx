@@ -1,61 +1,11 @@
 import { Check } from "lucide-react";
 import { whatsapp } from "@/shared/config/sitio";
+import { EXTRAS, PLANES } from "@/shared/config/vendfy";
 import { SectionHeading } from "@/shared/ui/section-heading";
 
-const planes = [
-  {
-    nombre: "Emprendedor",
-    precio: "149",
-    texto: "Para el negocio que recién se digitaliza.",
-    destacado: false,
-    incluye: [
-      "1 tienda online",
-      "Caja completa",
-      "Inventario sin límite de productos",
-      "Reportes",
-      "Apps de Windows y Android",
-      "Clientes",
-      "Soporte por WhatsApp",
-    ],
-  },
-  {
-    nombre: "Profesional",
-    precio: "299",
-    texto: "Para el negocio que crece y quiere más herramientas.",
-    destacado: true,
-    incluye: [
-      "Hasta 3 tiendas online",
-      "Todo lo del plan Emprendedor",
-      "Productos con IA",
-      "Descripciones y etiquetas con IA",
-      "WhatsApp con IA",
-      "Temas para tu tienda",
-      "Delivery con costo de envío",
-      "Soporte prioritario",
-    ],
-  },
-  {
-    nombre: "Empresarial",
-    precio: null,
-    texto: "A medida, para empresas con varias sucursales.",
-    destacado: false,
-    incluye: [
-      "Tiendas sin límite",
-      "Todo lo del plan Profesional",
-      "Varios usuarios con roles",
-      "API personalizada",
-      "Integraciones a medida",
-      "Capacitación del equipo",
-      "Gerente de cuenta dedicado",
-      "SLA garantizado",
-    ],
-  },
-];
-
-const extras = [
-  { nombre: "WhatsApp con IA", precio: "Bs 99/mes", texto: "Respuestas automáticas a cualquier hora con tu inventario." },
-  { nombre: "IA Premium", precio: "Bs 79/mes", texto: "Carga y mejora de productos con IA sin límite." },
-];
+// Los planes viven en shared/config/vendfy.ts: los usa también el asistente del chat.
+const planes = PLANES;
+const extras = EXTRAS.map((e) => ({ ...e, precio: `Bs ${e.precio}/mes` }));
 
 export function Pricing() {
   return (
