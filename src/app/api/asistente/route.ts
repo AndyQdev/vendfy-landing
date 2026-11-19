@@ -44,9 +44,23 @@ function normalizar(s: string) {
   return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 }
 
+// Palabras con que la gente pregunta lo mismo que dice una pregunta frecuente.
+const SINONIMOS: [RegExp, string][] = [
+  [/celular|telefono|movil|android|iphone|ipad|tablet|computadora|laptop|windows|mac|equipo/, "equipos funciona android iphone windows"],
+  [/instal|descarg|app|aplicacion/, "instalar navegador apps windows android"],
+  [/whatsapp|chat|mensaje|bot|agente/, "agente whatsapp responde clientes"],
+  [/anunci|facebook|instagram|meta|publicidad|campana/, "anuncios facebook instagram campana"],
+  [/producto|catalogo|excel|cargar|subir/, "cargo productos excel foto"],
+  [/codigo de barras|lector|escane/, "lector codigo barras"],
+  [/empez|comenz|registr|cuenta|contrat/, "empiezo cuenta"],
+  [/voz|hablar|oye vendfy|escucha|microfono/, "oye vendfy escucha"],
+];
+
 /** Sin IA: la pregunta frecuente con más palabras en común. */
 function respaldo(pregunta: string) {
-  const palabras = new Set(normalizar(pregunta).split(/[^a-z0-9ñ]+/).filter((p) => p.length > 3));
+  const n = normalizar(pregunta);
+  const extra = SINONIMOS.filter(([rx]) => rx.test(n)).map(([, w]) => w).join(" ");
+  const palabras = new Set((n + " " + extra).split(/[^a-z0-9ñ]+/).filter((p) => p.length > 3));
   let mejor: { r: string; puntos: number } = { r: "", puntos: 0 };
   for (const q of PREGUNTAS) {
     const texto = normalizar(q.p + " " + q.r);
@@ -54,7 +68,9 @@ function respaldo(pregunta: string) {
     for (const p of palabras) if (texto.includes(p)) puntos++;
     if (puntos > mejor.puntos) mejor = { r: q.r, puntos };
   }
-  if (/precio|cuesta|costo|plan|pagar|mensual/.test(normalizar(pregunta)))
+  if (/gratis|prueba gratuita|demo|descuento/.test(n))
+    return `Por ahora no tengo información de pruebas gratuitas ni descuentos. Escríbenos por WhatsApp al ${CONTACTO.whatsapp} y te cuentan las opciones.`;
+  if (/precio|cuesta|costo|plan|pagar|mensual/.test(n))
     return "Hay tres planes por mes: Emprendedor Bs 149, Profesional Bs 299 y Empresarial a medida. Además, WhatsApp con IA (Bs 99) e IA Premium (Bs 79) como complementos. Si me cuentas tu negocio, te ayudo a elegir.";
   if (mejor.puntos >= 2) return mejor.r;
   return `No tengo esa respuesta a mano. Escríbenos por WhatsApp al ${CONTACTO.whatsapp} o al correo ${CONTACTO.correo} y te respondemos.`;
